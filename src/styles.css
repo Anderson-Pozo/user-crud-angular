@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-inline: 20px;
+  padding-top: 10px;
+  background-color: #121212;
+}
