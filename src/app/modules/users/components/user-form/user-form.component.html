@@ -1,0 +1,98 @@
+<h2 mat-dialog-title>{{ dialogTitle }}</h2>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          formControlName="firstname"
+          placeholder="Ingrese nombre"
+        />
+        <mat-error *ngIf="userForm.get('firstname')?.hasError('required')"
+          >El nombre es requerido</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Apellido</mat-label>
+        <input
+          matInput
+          formControlName="lastname"
+          placeholder="Ingrese apellido"
+        />
+        <mat-error *ngIf="userForm.get('lastname')?.hasError('required')"
+          >El apellido es requerido</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          placeholder="test@email.com"
+          type="email"
+        />
+        <mat-error *ngIf="userForm.get('email')?.hasError('required')"
+          >El email es requerido</mat-error
+        >
+        <mat-error *ngIf="userForm.get('email')?.hasError('email')"
+          >Ingrese un email válido</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Celular</mat-label>
+        <input
+          matInput
+          formControlName="cellphone"
+          placeholder="Ingrese número celular"
+          type="tel"
+        />
+        <mat-error *ngIf="userForm.get('cellphone')?.hasError('required')"
+          >El celular es requerido</mat-error
+        >
+        <mat-error *ngIf="userForm.get('cellphone')?.hasError('pattern')"
+          >Ingrese un número de 10 dígitos</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          placeholder="Ingrese contraseña"
+          type="password"
+        />
+        <mat-hint *ngIf="isEditMode"
+          >Dejar en blanco para mantener la contraseña actual</mat-hint
+        >
+        <mat-error
+          *ngIf="userForm.get('password')?.hasError('required') && !isEditMode"
+          >La contraseña es requerida</mat-error
+        >
+        <mat-error *ngIf="userForm.get('password')?.hasError('minlength')"
+          >Debe tener al menos 6 caracteres</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">
+      {{ submitButtonLabel }}
+    </button>
+  </mat-dialog-actions>
+</form>
