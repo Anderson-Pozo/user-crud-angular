@@ -22,14 +22,14 @@ export class UserService {
     private http: HttpClient,
   ) { }
 
-  getUsers(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/users`, {
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/users`, {
       headers: this.headers,
     });
   }
 
-  getUserById(id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/users`, {
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/users`, {
       headers: this.headers,
       params: {
         id: `eq.${id}`,
@@ -39,14 +39,14 @@ export class UserService {
     });
   }
 
-  createUser(user: User): Observable<any> {
-    return this.http.post(`${this.apiUrl}/users`, user, {
+  createUser(user: User): Observable<User[]> {
+    return this.http.post<User[]>(`${this.apiUrl}/users`, user, {
       headers: this.headers
     });
   }
 
-  updateUser(id: string, user: Partial<User>): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/users`, user, {
+  updateUser(id: string, user: Partial<User>): Observable<User[]> {
+    return this.http.patch<User[]>(`${this.apiUrl}/users`, user, {
       headers: this.headers,
       params: {
         id: `eq.${id}`
@@ -54,8 +54,8 @@ export class UserService {
     });
   }
 
-  deleteUser(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/users`, {
+  deleteUser(id: string): Observable<User[]> {
+    return this.http.delete<User[]>(`${this.apiUrl}/users`, {
       headers: this.headers,
       params: {
         id: `eq.${id}`

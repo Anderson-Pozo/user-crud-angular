@@ -99,7 +99,7 @@ export class UserFormComponent implements OnInit {
         ...this.userForm.value,
         password: hashedPassword
       }).subscribe({
-        next: (data: User[]) => {
+        next: (data) => {
           this.dialogRef.close(data);
           this.snackBar.open('Usuario creado correctamente', 'Cerrar', {
             duration: 3000
